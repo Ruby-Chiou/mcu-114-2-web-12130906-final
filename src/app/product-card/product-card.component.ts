@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, Input, numberAttribute } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
+  host: { class: 'app-product-card' },
 })
 export class ProductCardComponent {
   @Input()
@@ -16,8 +18,8 @@ export class ProductCardComponent {
   @Input()
   company!: string;
 
-  @Input()
-  price!: string;
+  @Input({ transform: numberAttribute })
+  price!: number;
 
   @Input()
   photoUrl!: string;
