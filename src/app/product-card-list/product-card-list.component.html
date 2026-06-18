@@ -1,10 +1,14 @@
-@for (product of products; track $index) {
+@for (product of products(); track $index) {
 <app-product-card
   [id]="product.id"
   [productName]="product.name"
-  [author]="product.authors"
+  [authors]="product.authors"
+  [(isShow)]="product.isShow"
   [company]="product.company"
   [photoUrl]="product.photoUrl"
   [price]="product.price"
 ></app-product-card>
+} @empty {
+<div class="data-empty">無產品資料</div>
 }
+<app-pagination [totalCount]="products().length" [(pageIndex)]="pageIndex" pageSize="2"></app-pagination>

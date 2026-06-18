@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { booleanAttribute, Component, EventEmitter, Input, numberAttribute, Output } from '@angular/core';
+import { Component, input, model, numberAttribute } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
@@ -9,21 +9,21 @@ import { booleanAttribute, Component, EventEmitter, Input, numberAttribute, Outp
   host: { class: 'app-product-card' },
 })
 export class ProductCardComponent {
-  @Input()
-  id!: number;
+  readonly id = input.required<number, string | number>({ transform: numberAttribute });
 
-  @Input()
-  productName!: string;
+  readonly productName = input<string>();
 
-  @Input()
-  author!: string;
+  readonly authors = input<string[]>();
 
-  @Input()
-  company!: string;
+  readonly company = input<string>();
 
-  @Input({ transform: numberAttribute })
-  price!: number;
+  readonly isShow = model.required<boolean>();
 
-  @Input()
-  photoUrl!: string;
+  readonly photoUrl = input<string>();
+
+  readonly price = input<number, string | number>(0, { transform: numberAttribute });
+
+  onSetDisplay(isShow: boolean): void {
+    this.isShow.set(isShow);
+  }
 }
