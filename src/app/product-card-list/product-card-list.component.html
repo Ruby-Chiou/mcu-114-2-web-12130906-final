@@ -3,10 +3,11 @@
   [id]="product.id"
   [productName]="product.name"
   [authors]="product.authors"
-  [(isShow)]="product.isShow"
+  [isShow]="product.isShow"
   [company]="product.company"
   [photoUrl]="product.photoUrl"
   [price]="product.price"
+  (view)="view.emit(product)"
 ></app-product-card>
 } @empty {
 <div class="data-empty">無產品資料</div>
