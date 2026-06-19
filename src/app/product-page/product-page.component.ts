@@ -1,84 +1,45 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Product } from '../model/product';
 import { ProductCardListComponent } from '../product-card-list/product-card-list.component';
-import { Router } from '@angular/router';
+import { ProductService } from '../services/product.service';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-product-page',
-  imports: [ProductCardListComponent],
+  imports: [PaginationComponent, ProductCardListComponent],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss',
 })
 export class ProductPageComponent {
   private router = inject(Router);
 
-  products: Product[] = [
-    new Product({
-      id: 1,
-      name: 'A 產品',
-      authors: ['作者 A、作者 B、作者 C'],
-      company: '博碩文化',
-      price: 1580,
-      isShow: true,
-      photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
-    }),
-    new Product({
-      id: 2,
-      name: 'B 產品',
-      authors: ['作者 A、作者 B、作者 C'],
-      company: '博碩文化',
-      price: 1580,
-      isShow: true,
-      photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
-    }),
-    new Product({
-      id: 3,
-      name: 'C 產品',
-      authors: ['作者 A、作者 B、作者 C'],
-      company: '博碩文化',
-      price: 1580,
-      isShow: true,
-      photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
-    }),
-    new Product({
-      id: 4,
-      name: 'D 產品',
-      authors: ['作者 A、作者 B、作者 C'],
-      company: '博碩文化',
-      price: 1580,
-      isShow: true,
-      photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
-    }),
-    new Product({
-      id: 5,
-      name: 'E 產品',
-      authors: ['作者 A、作者 B、作者 C'],
-      company: '博碩文化',
-      price: 1580,
-      isShow: true,
-      photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
-    }),
-    new Product({
-      id: 6,
-      name: 'F 產品',
-      authors: ['作者 A、作者 B、作者 C'],
-      company: '博碩文化',
-      price: 1580,
-      isShow: true,
-      photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
-    }),
-    new Product({
-      id: 7,
-      name: 'G 產品',
-      authors: ['作者 A、作者 B、作者 C'],
-      company: '博碩文化',
-      price: 1580,
-      isShow: true,
-      photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
-    }),
-  ];
+  protected readonly pageIndex = signal(1);
+
+  protected readonly pageSize = signal(5);
+
+  protected readonly totalCount = signal(0);
+
+  private readonly productService = inject(ProductService);
+
+  protected readonly products = signal<Product[]>([]);
+
+  constructor() {
+    effect(() => {
+      const pageIndex = this.pageIndex();
+      const pageSize = this.pageSize();
+      this.getProducts(pageIndex, pageSize);
+    });
+  }
 
   protected onView(product: Product): void {
     this.router.navigate(['product', product.id]);
+  }
+
+  private getProducts(pageIndex: number, pageSize: number): void {
+    const { data, count } = this.productService.getList(undefined, pageIndex, pageSize);
+    this.products.set(data);
+    this.totalCount.set(count);
   }
 }
