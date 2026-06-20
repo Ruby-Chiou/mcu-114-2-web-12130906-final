@@ -12,7 +12,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss',
 })
-export class ProductPageComponent {
+export class ProductPageComponent implements OnInit {
   private router = inject(Router);
 
   protected readonly pageIndex = signal(1);
@@ -33,13 +33,18 @@ export class ProductPageComponent {
     });
   }
 
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
   protected onView(product: Product): void {
     this.router.navigate(['product', product.id]);
   }
 
   private getProducts(pageIndex: number, pageSize: number): void {
-    const { data, count } = this.productService.getList(undefined, pageIndex, pageSize);
-    this.products.set(data);
-    this.totalCount.set(count);
+    this.productService.getList(undefined, pageIndex, pageSize).subscribe(({ data, count }) => {
+      this.products.set(data);
+      this.totalCount.set(count);
+    });
   }
 }
