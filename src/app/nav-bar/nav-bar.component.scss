@@ -8,18 +8,20 @@
     color: #005ccb;
     cursor: pointer;
     text-decoration: none;
+    margin: 0 5px;
 
     &:hover,
-    &:active {
-      background-color: #005ccb1a;
-    }
-
+    &:active,
     &:force {
       text-decoration: none;
     }
 
     &:hover {
       background-color: #005ccb33;
+    }
+
+    &.active {
+      background-color: #005ccb1a;
     }
   }
 }
