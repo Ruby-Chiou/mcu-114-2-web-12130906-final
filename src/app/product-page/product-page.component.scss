@@ -1,4 +1,41 @@
 :host {
   display: block;
   padding: 20px;
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 10px; // 輸入框與按鈕間距
+  }
+
+  input[type='text'] {
+    width: 250px;
+    height: 35px;
+    padding: 0 10px;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff; // ✅ 白底
+    font-size: 15px;
+    outline: none;
+
+    &:focus {
+      border-color: #000000; // 聚焦時框線更深
+    }
+  }
+
+  button {
+    height: 35px;
+    border: 1.5px solid #005ccb; // ✅ 藍框
+    border-radius: 1px;
+    background-color: #fff; // ✅ 白底
+    color: #005ccb; // ✅ 藍字
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #005ccb; // ✅ hover 時反轉
+      color: #fff; // ✅ 字變白
+    }
+  }
 }
