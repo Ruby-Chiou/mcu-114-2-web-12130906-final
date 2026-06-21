@@ -1,6 +1,6 @@
 <img [src]="photoUrl()" />
 <div class="content">
-  <strong [class.hidden]="!isShow()">{{ productName() }}</strong>
+  <strong [class.hidden]="!isShow()" [class.text-danger]="specialPrice()">{{ productName() }}</strong>
 </div>
 <div>
   @for (author of authors(); track $index) {

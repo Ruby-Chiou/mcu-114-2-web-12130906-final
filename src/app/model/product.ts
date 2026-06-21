@@ -14,7 +14,11 @@ export class Product {
 
   price!: number;
 
+  specialPrice?: number;
+
   isShow!: boolean;
 
   photoUrl!: string;
+
+  createDate!: Date;
 }

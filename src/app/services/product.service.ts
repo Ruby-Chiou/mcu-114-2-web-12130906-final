@@ -13,6 +13,7 @@ export class ProductService {
       authors: ['作者 A、作者 B、作者 C'],
       company: '博碩文化',
       price: 1580,
+      specialPrice: 1580,
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
     }),

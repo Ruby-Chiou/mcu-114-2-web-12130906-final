@@ -1,2 +1,3 @@
-<a [routerLink]="['products']" routerLinkActive="active">產品清單</a>
-<a [routerLink]="['shoppingcart']" routerLinkActive="active">購物車</a>
+<a [routerLink]="['/products']" [class.active]="router.url.includes('products') || router.url.includes('product')"> 產品清單 </a>
+
+<a [routerLink]="['/shoppingcart']" routerLinkActive="active"> 購物車 </a>

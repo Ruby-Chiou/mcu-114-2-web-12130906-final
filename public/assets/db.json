@@ -12,7 +12,8 @@
       "isShow": true,
       "photoUrl": "https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img",
       "createDate": "2023-10-17T00:00:00.000+08:00",
-      "price": 15800
+      "price": 1580,
+      "specialPrice": 1580
     },
     {
       "id": "2",
@@ -107,7 +108,7 @@
         "作者 C"
       ],
       "company": "博碩文化",
-      "isShow": true,
+      "isShow": false,
       "photoUrl": "https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img",
       "createDate": "2023-10-17T00:00:00.000+08:00",
       "price": 1580

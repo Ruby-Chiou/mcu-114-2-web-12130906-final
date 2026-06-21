@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, booleanAttribute, input, numberAttribute, output } from '@angular/core';
+import { Product } from '../model/product';
 
 @Component({
   selector: 'app-product-card',
@@ -22,6 +23,8 @@ export class ProductCardComponent {
   readonly photoUrl = input<string>();
 
   readonly price = input<number, string | number>(0, { transform: numberAttribute });
+
+  readonly specialPrice = input<number>();
 
   readonly view = output<void>();
 }
