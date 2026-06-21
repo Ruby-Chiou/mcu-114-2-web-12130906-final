@@ -1,1 +1,32 @@
-<p>shoppingcart-page works!</p>
+<div class="container" [formGroup]="form">
+  <h3>基本資料</h3>
+  <div class="form-item">
+    <div class="form-column">
+      <label>姓名</label>
+      <input type="text" formControlName="name" />
+      @if (name.hasError('required')) {
+      <div class="error-message">請輸入姓名</div>
+      }
+    </div>
+  </div>
+
+  <div class="form-item">
+    <div class="form-column">
+      <label>地址</label>
+      <input type="text" formControlName="address" />
+      @if (address.hasError('required')) {
+      <div class="error-message">請輸入地址</div>
+      }
+    </div>
+  </div>
+
+  <div class="form-item">
+    <div class="form-column">
+      <label>電話</label>
+      <input type="text" formControlName="phone" />
+      @if (phone.hasError('required')) {
+      <div class="error-message">請輸入電話</div>
+      }
+    </div>
+  </div>
+</div>

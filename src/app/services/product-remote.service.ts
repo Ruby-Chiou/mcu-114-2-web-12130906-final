@@ -19,9 +19,25 @@ export class ProductRemoteService extends ProductService {
   }
 
   override getList(name: string | undefined, index: number, size: number): Observable<{ data: Product[]; count: number }> {
-    const params = new HttpParams({ fromObject: { _page: index, _per_page: size } });
+    let query = { _page: index, _per_page: size } as { name?: string; _page: number; _per_page: number };
+    if (name) query = { ...query, name };
+    const params = new HttpParams({ fromObject: query });
     return this.httpClient
       .get<{ data: Product[]; items: number }>(this.url, { params })
       .pipe(map(({ data, items: count }) => ({ data, count })));
+  }
+
+  add(product: Readonly<Product>): Observable<Product> {
+    return this.httpClient.post<Product>(this.url, { ...product });
+  }
+
+  remove(productId: string): Observable<Product> {
+    const url = `${this.url}/${productId}`;
+    return this.httpClient.delete<Product>(url);
+  }
+
+  override update(product: Readonly<Product>): Observable<Product> {
+    const url = `${this.url}/${product.id}`;
+    return this.httpClient.put<Product>(url, product);
   }
 }

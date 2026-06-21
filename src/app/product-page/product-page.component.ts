@@ -33,9 +33,7 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  ngOnInit(): void {}
 
   protected onView(product: Product): void {
     this.router.navigate(['product', product.id]);

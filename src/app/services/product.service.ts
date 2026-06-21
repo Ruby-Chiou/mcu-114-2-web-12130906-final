@@ -91,4 +91,8 @@ export class ProductService {
       filter(({ id }) => id === productId)
     );
   }
+
+  update(product: Readonly<Product>): Observable<Product> {
+    throw new Error('Not implement');
+  }
 }
