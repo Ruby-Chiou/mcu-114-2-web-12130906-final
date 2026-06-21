@@ -8,7 +8,7 @@ import { Product } from '../model/product';
 export class ProductService {
   private _data: Product[] = [
     new Product({
-      id: 1,
+      id: '1',
       name: 'A 產品',
       authors: ['作者 A、作者 B、作者 C'],
       company: '博碩文化',
@@ -17,7 +17,7 @@ export class ProductService {
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
     }),
     new Product({
-      id: 2,
+      id: '2',
       name: 'B 產品',
       authors: ['作者 A、作者 B、作者 C'],
       company: '博碩文化',
@@ -26,7 +26,7 @@ export class ProductService {
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
     }),
     new Product({
-      id: 3,
+      id: '3',
       name: 'C 產品',
       authors: ['作者 A、作者 B、作者 C'],
       company: '博碩文化',
@@ -35,7 +35,7 @@ export class ProductService {
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
     }),
     new Product({
-      id: 4,
+      id: '4',
       name: 'D 產品',
       authors: ['作者 A、作者 B、作者 C'],
       company: '博碩文化',
@@ -44,7 +44,7 @@ export class ProductService {
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
     }),
     new Product({
-      id: 5,
+      id: '5',
       name: 'E 產品',
       authors: ['作者 A、作者 B、作者 C'],
       company: '博碩文化',
@@ -53,7 +53,7 @@ export class ProductService {
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
     }),
     new Product({
-      id: 6,
+      id: '6',
       name: 'F 產品',
       authors: ['作者 A、作者 B、作者 C'],
       company: '博碩文化',
@@ -62,7 +62,7 @@ export class ProductService {
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
     }),
     new Product({
-      id: 7,
+      id: '7',
       name: 'G 產品',
       authors: ['作者 A、作者 B、作者 C'],
       company: '博碩文化',
@@ -85,7 +85,7 @@ export class ProductService {
     );
   }
 
-  getById(productId: number): Observable<Product> {
+  getById(productId: string): Observable<Product> {
     return of(this._data).pipe(
       mergeMap((data) => data),
       filter(({ id }) => id === productId)
