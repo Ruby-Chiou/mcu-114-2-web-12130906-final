@@ -3,6 +3,7 @@ import { Component, inject, input, numberAttribute, OnInit, signal } from '@angu
 import { Product } from '../model/product';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -17,16 +18,17 @@ export class ProductDetailPageComponent {
 
   private readonly productService = inject(ProductService);
 
-  /*onEdit(): void {
-    this.router.navigate(['product', 'form', this.product().id]);
-  }
-
-  onRemove(): void {
-    this.productService.remove(this.product().id);
-    this.router.navigate(['products']);
-  }*/
+  private cartService = inject(CartService);
 
   onBack(): void {
     this.router.navigate(['products']);
+  }
+
+  protected onAddToCart(): void {
+    const currentProduct = this.product();
+    if (currentProduct) {
+      this.cartService.addToCart(currentProduct);
+      alert(`已將【${currentProduct.name}】加入購物車！`);
+    }
   }
 }
