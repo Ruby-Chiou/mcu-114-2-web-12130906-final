@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Product } from '../model/product';
@@ -23,7 +23,11 @@ export class ProductPageComponent implements OnInit {
 
   private readonly productService = inject(ProductService);
 
-  protected readonly products = signal<Product[]>([]);
+  private readonly rawProducts = signal<Product[]>([]);
+
+  protected readonly products = computed(() => {
+    return this.rawProducts().filter((product) => product.isShow !== false);
+  });
 
   constructor() {
     effect(() => {
@@ -41,7 +45,7 @@ export class ProductPageComponent implements OnInit {
 
   private getProducts(pageIndex: number, pageSize: number): void {
     this.productService.getList(undefined, pageIndex, pageSize).subscribe(({ data, count }) => {
-      this.products.set(data);
+      this.rawProducts.set(data);
       this.totalCount.set(count);
     });
   }
