@@ -24,35 +24,30 @@
       background-color: #005ccb1a;
     }
   }
-  // 讓購物車連結變成 Flex 容器，字跟數字泡泡才能平起平坐
-  a[routerLink='/shoppingcart'] {
+
+  .cart-container {
     display: inline-flex;
     align-items: center;
-    gap: 6px; // 字跟數字泡泡中間的舒適小縫隙
+    gap: 6px;
     position: relative;
 
-    // ⭕ 紅色數字泡泡
     .cart-badge {
-      background-color: rgb(206, 0, 0); // 使用你專案經典的警告紅
+      background-color: #007bff;
       color: white;
-      font-size: 11px;
-      font-weight: bold;
+      font-size: 14px;
       line-height: 1;
 
-      // 讓泡泡變成完美的圓形或橢圓形
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      border-radius: 9px;
+      min-width: 24px;
+      height: 25px;
 
-      // 讓數字在泡泡裡面絕對置中
+      padding: 2px 5px 0px 5px; // 順序為：上、右、下、左
+
+      border-radius: 12px;
+
       display: flex;
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
-
-      // 稍微往上飄一點點，視覺上更動感
-      transform: translateY(-1px);
     }
   }
 }

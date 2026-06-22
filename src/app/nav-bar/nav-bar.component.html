@@ -1,7 +1,7 @@
 <a [routerLink]="['/products']" [class.active]="router.url.includes('products') || router.url.includes('product')"> 產品清單 </a>
 
-<a [routerLink]="['/shoppingcart']" routerLinkActive="active">
+<a [routerLink]="['/shoppingcart']" routerLinkActive="active" class="cart-container">
   購物車 @if (cartCount() > 0) {
   <span class="cart-badge">{{ cartCount() }}</span>
-  }</a
->
+  }
+</a>
