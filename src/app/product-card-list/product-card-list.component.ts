@@ -2,7 +2,6 @@ import { Component, Input, input, output, signal } from '@angular/core';
 
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { Product } from '../model/product';
-
 @Component({
   selector: 'app-product-card-list',
   imports: [ProductCardComponent],
@@ -15,4 +14,6 @@ export class ProductCardListComponent {
   readonly view = output<Product>();
 
   readonly pageIndex = signal(1);
+
+  readonly addToCart = output<Product>();
 }

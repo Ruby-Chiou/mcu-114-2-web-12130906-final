@@ -4,5 +4,5 @@
     <span class="search_menu">查詢</span>
   </button>
 </div>
-<app-product-card-list [products]="products()" (view)="onView($event)"></app-product-card-list>
+<app-product-card-list [products]="products()" (view)="onView($event) " (addToCart)="onAddToCart($event)"></app-product-card-list>
 <app-pagination [(pageIndex)]="pageIndex" [pageSize]="pageSize()" [totalCount]="totalCount()"></app-pagination>

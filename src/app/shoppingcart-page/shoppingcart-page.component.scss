@@ -1,18 +1,40 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.cart-page-layout {
+  display: flex;
+  justify-content: space-between; // ⭕ 讓左邊貼極左、右邊貼極右
+  margin: 10px auto; // 上下 10px，左右自動置中
+  width: 100%; // 這是你調好的完美邊緣縫隙
+  max-width: 1500px;
+}
+
 .container {
-  margin: 20px;
-  width: 500px;
-  border: 1.5px solid #ccc;
+  border: 2px solid #ccc;
   display: flex;
   flex-direction: column;
+
+  //左邊基礎資料
+  &:first-child {
+    width: 500px;
+    flex-shrink: 0;
+  }
+  //右邊購買項目
+  &:last-child {
+    flex-grow: 1;
+    margin-left: 40px;
+  }
 
   h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 40px;
     margin: 0;
     font-weight: 600;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
   }
 
   .form-item {
@@ -25,7 +47,7 @@
       align-items: center;
 
       > label {
-        width: 150px; // 左邊姓名/地址/電話
+        width: 150px;
         text-align: center;
         font-size: 16px;
         align-items: center;
@@ -35,18 +57,55 @@
       > input {
         flex: 1;
         height: 15px;
-        //width: 100px;
         padding: 6px 12px;
         font-size: 16px;
       }
 
       .error-message {
-        width: 90px; // 右邊紅字區
+        width: 90px;
         color: rgb(206, 0, 0);
         padding-left: 20px;
         font-size: 15px;
         white-space: nowrap;
+        display: flex;
+        align-items: center;
+
+        .btn-delete {
+          background: none;
+          border: none;
+          color: rgb(206, 0, 0);
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 15px;
+          padding: 0;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
+    }
+  }
+}
+
+// 💰 送出按鈕區（寬度跟隨整頁版面置中）
+.action-footer {
+  text-align: center;
+  margin: 50px 0;
+
+  .btn-submit {
+    height: 35px;
+    border: 1.5px solid #999;
+    border-radius: 1px;
+    background-color: #fff; // ✅ 白底
+    color: #999;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #005ccb; // ✅ hover 時反轉
+      color: #fff; // ✅ 字變白
+      border: #005ccb;
     }
   }
 }

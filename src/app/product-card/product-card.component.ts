@@ -22,9 +22,28 @@ export class ProductCardComponent {
 
   readonly photoUrl = input<string>();
 
+  readonly createDate = input<Date>();
+
   readonly price = input<number, string | number>(0, { transform: numberAttribute });
 
   readonly specialPrice = input<number>();
 
   readonly view = output<void>();
+
+  readonly addToCart = output<any>();
+
+  protected onCardAddToCart(): void {
+    const currentProduct = {
+      id: this.id(),
+      name: this.productName(),
+      authors: this.authors(),
+      company: this.company(),
+      isShow: this.isShow(),
+      photoUrl: this.photoUrl(),
+      createDate: this.createDate(),
+      price: this.price(),
+    };
+
+    this.addToCart.emit(currentProduct);
+  }
 }

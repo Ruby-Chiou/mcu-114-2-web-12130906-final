@@ -19,7 +19,7 @@
     @if (product().specialPrice) {
     <strong>特價：</strong>
     <span>{{ product().specialPrice | currency : '$' : 'symbol' : '4.2' }}</span>
-    <span class="text-danger">特價</span>
+    <span class="text-danger" style="color: red">特價</span>
     } @else {
     <strong>原價：</strong>
     <span>{{ product().price | currency : '$' : 'symbol' : '4.2' }}</span>
