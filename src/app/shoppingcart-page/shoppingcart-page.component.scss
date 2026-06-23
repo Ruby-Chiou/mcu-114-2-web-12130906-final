@@ -5,9 +5,10 @@
 
 .cart-page-layout {
   display: flex;
-  justify-content: space-between; // ⭕ 讓左邊貼極左、右邊貼極右
-  margin: 10px auto; // 上下 10px，左右自動置中
-  width: 100%; // 這是你調好的完美邊緣縫隙
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 10px auto;
+  width: 100%;
   max-width: 1500px;
 }
 
@@ -15,17 +16,8 @@
   border: 2px solid #ccc;
   display: flex;
   flex-direction: column;
-
-  //左邊基礎資料
-  &:first-child {
-    width: 500px;
-    flex-shrink: 0;
-  }
-  //右邊購買項目
-  &:last-child {
-    flex-grow: 1;
-    margin-left: 40px;
-  }
+  width: 500px;
+  flex-shrink: 0;
 
   h3 {
     display: flex;
@@ -50,7 +42,6 @@
         width: 150px;
         text-align: center;
         font-size: 16px;
-        align-items: center;
         font-weight: 500;
       }
 
@@ -59,6 +50,7 @@
         height: 15px;
         padding: 6px 12px;
         font-size: 16px;
+        border: 1.5px solid;
       }
 
       .error-message {
@@ -69,17 +61,107 @@
         white-space: nowrap;
         display: flex;
         align-items: center;
+      }
+    }
+  }
+}
+
+.cart-items-stream {
+  flex-grow: 1;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+
+  // 標題小橫框
+  .title-box {
+    border: 2px solid #ccc;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-sizing: border-box;
+
+    h3 {
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  .item-card-box {
+    border: 2px solid #ccc;
+    border-top: none;
+    padding: 8px 0px;
+    background-color: #fff;
+    box-sizing: border-box;
+
+    .form-column {
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      .item-index {
+        width: 100px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 18px;
+      }
+
+      > label {
+        width: 100%;
+        max-width: 250px;
+        text-align: left;
+        font-size: 18px;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .item-spacer {
+        flex-grow: 1;
+        min-width: 250px;
+      }
+
+      > input {
+        width: 120px;
+        height: 15px;
+        padding: 6px 12px;
+        font-size: 16px;
+        text-align: center;
+        border: 1.5px solid;
+      }
+
+      .item-price {
+        width: 120px;
+        padding-left: 15px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 18px;
+      }
+
+      .error-message {
+        width: 90px;
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
 
         .btn-delete {
-          background: none;
-          border: none;
+          text-align: center;
+          height: 25px;
+          border: 1.5px solid rgb(206, 0, 0);
+          border-radius: 1px;
+          background-color: #fff;
           color: rgb(206, 0, 0);
           cursor: pointer;
-          font-weight: bold;
-          font-size: 15px;
-          padding: 0;
+          font-size: 14px;
+          transition: all 0.2s ease;
+
           &:hover {
-            text-decoration: underline;
+            background-color: rgb(206, 0, 0);
+            color: #fff;
+            border: rgb(206, 0, 0);
           }
         }
       }
@@ -87,7 +169,7 @@
   }
 }
 
-// 💰 送出按鈕區（寬度跟隨整頁版面置中）
+// 💰 送出按鈕區
 .action-footer {
   text-align: center;
   margin: 50px 0;
@@ -96,15 +178,15 @@
     height: 35px;
     border: 1.5px solid #999;
     border-radius: 1px;
-    background-color: #fff; // ✅ 白底
+    background-color: #fff;
     color: #999;
     cursor: pointer;
     font-size: 15px;
     transition: all 0.2s ease;
 
     &:hover {
-      background-color: #005ccb; // ✅ hover 時反轉
-      color: #fff; // ✅ 字變白
+      background-color: #005ccb;
+      color: #fff;
       border: #005ccb;
     }
   }

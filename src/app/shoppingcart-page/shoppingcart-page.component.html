@@ -32,21 +32,23 @@
     </div>
   </div>
 
-  <div class="container">
-    <h3>購買項目</h3>
-
-    @if (cartService.cartItems().length === 0) {
-    <div class="form-item">
-      <div class="form-column">
-        <label style="width: 100%; text-align: center; color: #999">購物車目前沒有商品</label>
-      </div>
+  <div class="cart-items-stream">
+    <div class="title-box">
+      <h3>購買項目</h3>
     </div>
-    } @else { @for (item of cartService.cartItems(); track item.product.id) {
-    <div class="form-item">
+
+    @if (cartService.cartItems().length > 0) { @for (item of cartService.cartItems(); track item.product.id; let i = $index) {
+    <div class="item-card-box">
       <div class="form-column">
+        <span class="item-index">{{ i + 1 }}</span>
+
         <label>{{ item.product.name }}</label>
 
+        <div class="item-spacer"></div>
+
         <input type="number" [(ngModel)]="item.quantity" (change)="cartService.updateQuantity(item.product.id, item.quantity)" min="1" />
+
+        <span class="item-price">{{ item.product.price * item.quantity | currency : '$' : 'symbol' : '4.2' }}</span>
 
         <div class="error-message">
           <button class="btn-delete" (click)="cartService.removeFromCart(item.product.id)">刪除</button>
