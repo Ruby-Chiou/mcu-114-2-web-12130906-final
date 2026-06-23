@@ -13,6 +13,11 @@ export class CartService {
   // 1. 購物車品項的 Signal 陣列
   readonly cartItems = signal<CartItem[]>([]);
 
+  readonly cartCount = computed(() => {
+    // 算總品項（幾種產品）：
+    return this.cartItems().length;
+  });
+
   // 2. 全自動計算總價 (防呆：如果有特價就用特價算，沒特價用原價)
   readonly totalPrice = computed(() => {
     return this.cartItems().reduce((sum, item) => {

@@ -31,7 +31,7 @@ Content-Type: application/json
 
 {
   "studentId": "{{studentId}}",
-  "name": "Z 產品",
+  "name": "D 產品",
   "authors": [
     "作者 A",
     "作者 B",
@@ -40,27 +40,28 @@ Content-Type: application/json
   "company": "博碩文化",
   "isShow": false,
   "photoUrl": "https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img",
-  "price": 1580
+  "price": 1580,
+  "specialPrice": null
 }
 
 ###
 
 # Update
-@updateProductId = xxxx
+@updateProductId =47f0150a-0b1f-4e9a-b7af-a8e820f74bc9
 PUT {{webApiUrl}}/{{updateProductId}}
 Content-Type: application/json
 
 {
   "id": "{{updateProductId}}",
   "studentId": "{{studentId}}",
-  "name": "Z2 產品",
+  "name": "B 產品",
   "authors": [
     "作者 A",
     "作者 B",
     "作者 C"
   ],
   "company": "博碩文化",
-  "isShow": false,
+  "isShow": true,
   "photoUrl": "https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img",
   "price": 1580
 }
