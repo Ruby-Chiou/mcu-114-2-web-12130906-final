@@ -34,6 +34,11 @@ export class ShoppingcartPageComponent {
 
   // ⭕ 送出訂單按鈕
   protected onSubmit(): void {
+    if (this.form.invalid && this.cartService.cartItems().length === 0) {
+      alert('提醒您，請記得完成基本資料填寫，且您的購物車內目前沒有商品，請前往選購。');
+      return;
+    }
+
     // 檢查 1：表單欄位（姓名、地址、電話）有沒有過
     if (this.form.invalid) {
       this.form.markAllAsTouched(); // 觸發紅字

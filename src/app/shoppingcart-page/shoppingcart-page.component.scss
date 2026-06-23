@@ -9,7 +9,7 @@
   align-items: flex-start;
   margin: 10px auto;
   width: 100%;
-  max-width: 1500px;
+  max-width: 1510px;
 }
 
 .container {
@@ -48,14 +48,15 @@
       > input {
         flex: 1;
         height: 15px;
+        max-width: 210px;
         padding: 6px 12px;
         font-size: 16px;
-        border: 1.5px solid;
+        border: 1.5px solid #666;
       }
 
       .error-message {
         width: 90px;
-        color: rgb(206, 0, 0);
+        color: #ce0000;
         padding-left: 20px;
         font-size: 15px;
         white-space: nowrap;
@@ -128,9 +129,9 @@
         width: 120px;
         height: 15px;
         padding: 6px 12px;
-        font-size: 16px;
+        font-size: 18px;
         text-align: center;
-        border: 1.5px solid;
+        border: 1.5px solid #666;
       }
 
       .item-price {
@@ -150,18 +151,18 @@
         .btn-delete {
           text-align: center;
           height: 25px;
-          border: 1.5px solid rgb(206, 0, 0);
+          border: 1.5px solid #ce0000;
           border-radius: 1px;
           background-color: #fff;
-          color: rgb(206, 0, 0);
+          color: #ce0000;
           cursor: pointer;
           font-size: 14px;
           transition: all 0.2s ease;
 
           &:hover {
-            background-color: rgb(206, 0, 0);
+            background-color: #ce0000;
             color: #fff;
-            border: rgb(206, 0, 0);
+            border: 1.5px solid #ce0000;
           }
         }
       }
@@ -176,10 +177,10 @@
 
   .btn-submit {
     height: 35px;
-    border: 1.5px solid #999;
+    border: 1.5px solid #666;
     border-radius: 1px;
     background-color: #fff;
-    color: #999;
+    color: #666;
     cursor: pointer;
     font-size: 15px;
     transition: all 0.2s ease;
@@ -187,7 +188,7 @@
     &:hover {
       background-color: #005ccb;
       color: #fff;
-      border: #005ccb;
+      border: 1.5px solid #005ccb;
     }
   }
 }
