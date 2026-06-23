@@ -3,7 +3,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
-import { ProductRemoteService } from './services/product-remote.service';
+import { ProductAzureService } from './services/product-azure.service';
 import { ProductService } from './services/product.service';
 
 export const appConfig: ApplicationConfig = {
@@ -11,6 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
     provideRouter(routes, withComponentInputBinding()),
-    { provide: ProductService, useClass: ProductRemoteService },
+    { provide: ProductService, useClass: ProductAzureService },
   ],
 };
