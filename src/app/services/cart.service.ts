@@ -32,11 +32,14 @@ export class CartService {
     const existingItem = items.find((item) => item.product.id === product.id);
 
     if (existingItem) {
-      // 如果購物車已經有了，數量直接加上去
-      existingItem.quantity += quantity;
-      this.cartItems.set([...items]);
+      const updatedItems = items.map((item) => {
+        if (item.product.id === product.id) {
+          return { ...item, quantity: item.quantity + quantity };
+        }
+        return item;
+      });
+      this.cartItems.set(updatedItems);
     } else {
-      // 沒有的話，塞新的一筆進去
       this.cartItems.set([...items, { product, quantity }]);
     }
   }

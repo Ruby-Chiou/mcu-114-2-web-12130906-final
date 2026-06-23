@@ -42,13 +42,19 @@
       <div class="form-column">
         <span class="item-index">{{ i + 1 }}</span>
 
-        <label>{{ item.product.name }}</label>
+        <label
+          >{{ item.product.name }} @if (item.product.specialPrice && item.product.specialPrice < item.product.price) {
+          <span class="sale-text">特價</span>
+          }</label
+        >
 
         <div class="item-spacer"></div>
 
         <input type="number" [(ngModel)]="item.quantity" (change)="cartService.updateQuantity(item.product.id, item.quantity)" min="1" />
 
-        <span class="item-price">{{ item.product.price * item.quantity | currency : '$' : 'symbol' : '4.2' }}</span>
+        <span class="item-price">
+          {{ ((item.product.specialPrice ?? item.product.price) * item.quantity) | currency : '$' : 'symbol' : '4.2' }}
+        </span>
 
         <div class="error-message">
           <button class="btn-delete" (click)="cartService.removeFromCart(item.product.id)">刪除</button>

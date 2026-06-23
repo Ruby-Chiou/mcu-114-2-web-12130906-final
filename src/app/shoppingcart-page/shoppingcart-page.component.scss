@@ -110,14 +110,25 @@
       }
 
       > label {
-        width: 100%;
-        max-width: 250px;
-        text-align: left;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        max-width: 400px;
         font-size: 18px;
         font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        text-align: left;
+
+        .sale-text {
+          color: #ce0000;
+          font-size: 15px;
+          letter-spacing: 0.5px;
+          white-space: nowrap;
+          border: 1.5px solid #ce0000;
+          border-radius: 2px;
+          padding: 0 3px;
+          flex-shrink: 0;
+        }
       }
 
       .item-spacer {
@@ -136,8 +147,8 @@
 
       .item-price {
         width: 120px;
-        padding-left: 15px;
-        text-align: center;
+        padding-right: 20px;
+        text-align: right;
         font-weight: 500;
         font-size: 18px;
       }
@@ -170,7 +181,7 @@
   }
 }
 
-// 💰 送出按鈕區
+// 送出按鈕區
 .action-footer {
   text-align: center;
   margin: 50px 0;
