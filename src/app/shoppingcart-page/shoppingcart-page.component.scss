@@ -190,5 +190,12 @@
       color: #fff;
       border: 1.5px solid #005ccb;
     }
+
+    &:disabled {
+      background-color: #eee;
+      color: #aaa;
+      border: 1.5px solid #ccc;
+      cursor: not-allowed;
+    }
   }
 }

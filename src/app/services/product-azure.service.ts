@@ -52,7 +52,6 @@ export class ProductAzureService extends ProductService {
     // 建立訂單的網址（把原本產品的網址結尾 /product 換成 /order）
     const orderUrl = this.url.replace('/product', '/order');
 
-    // 依照老師的 API 慣例，可能也需要帶上你的學號 (studentId) 歸類訂單
     const payload = {
       ...orderData,
       studentId: this.studentId,

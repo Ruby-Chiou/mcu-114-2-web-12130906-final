@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Product } from '../model/product';
 import { JsonPipe, CurrencyPipe } from '@angular/common';
@@ -10,7 +10,7 @@ import { ProductService } from '../services/product.service';
   templateUrl: './shoppingcart-page.component.html',
   styleUrl: './shoppingcart-page.component.scss',
 })
-export class ShoppingcartPageComponent {
+export class ShoppingcartPageComponent implements OnInit {
   protected readonly cartService = inject(CartService);
 
   //必須在這裡注入 ProductService，元件才認得 this.productService！
@@ -33,22 +33,41 @@ export class ShoppingcartPageComponent {
     return this.form.get('phone') as FormControl<string | null>;
   }
 
-  protected onSubmit(): void {
-    if (this.form.invalid && this.cartService.cartItems().length === 0) {
-      alert('提醒您，請記得完成基本資料填寫，且您的購物車內目前沒有商品，請前往選購。');
-      return;
+  ngOnInit(): void {
+    const savedDraft = localStorage.getItem('checkout_form_draft');
+    if (savedDraft) {
+      const draftData = JSON.parse(savedDraft);
+      // 把上次填到一半的資料塞回表單裡
+      this.form.patchValue(draftData);
     }
 
+    this.form.valueChanges.subscribe((value) => {
+      localStorage.setItem(
+        'checkout_form_draft',
+        JSON.stringify({
+          name: value.name,
+          address: value.address,
+          phone: value.phone,
+        })
+      );
+    });
+  }
+
+  private invalidSubmitCount = 0;
+
+  protected onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      alert('請填寫完整的基本資料！');
+      this.invalidSubmitCount++; // 失敗次數 +1
+
+      // 點到第 2 次以上時，給他一個更直白的警告
+      if (this.invalidSubmitCount >= 2) {
+        alert(`提醒您：欄位尚未填寫完畢，請檢查紅字提示位置。`);
+      }
       return;
     }
 
-    if (this.cartService.cartItems().length === 0) {
-      alert('購物車目前空空如也，無法送出訂單！');
-      return;
-    }
+    this.invalidSubmitCount = 0;
 
     const orderPayload = {
       customerName: this.form.value.name,
@@ -56,17 +75,19 @@ export class ShoppingcartPageComponent {
       address: this.form.value.address,
       orderDetails: this.cartService.cartItems().map((item) => ({
         productId: item.product.id,
-        productName: item.product.name,
         quantity: item.quantity,
       })),
     };
 
-    // 發送訂單
+    // 發送訂單到 Azure API
     this.productService.createOrder(orderPayload).subscribe({
       next: (response: any) => {
         alert('訂單已成功送出！謝謝您的購買。');
-        this.cartService.clearCart();
-        this.form.reset();
+
+        localStorage.removeItem('checkout_form_draft');
+
+        this.cartService.clearCart(); // 清空購買項目
+        this.form.reset(); // 清空表單且紅字會全自動隱藏
       },
       error: (err: any) => {
         console.error('訂單送出失敗：', err);
