@@ -96,4 +96,10 @@ export class ProductService {
   update(product: Readonly<Product>): Observable<Product> {
     throw new Error('Not implement');
   }
+
+  // 🚀 補在本地的 ProductService 最下方，當作抽象或虛擬基地
+  createOrder(orderData: any): Observable<any> {
+    // 本地預設直接回傳一個空的 Observable，子類別 (Azure) 會去 override 它
+    return of({ success: true });
+  }
 }

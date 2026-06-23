@@ -47,7 +47,7 @@ Content-Type: application/json
 ###
 
 # Update
-@updateProductId =47f0150a-0b1f-4e9a-b7af-a8e820f74bc9
+@updateProductId = xxxx
 PUT {{webApiUrl}}/{{updateProductId}}
 Content-Type: application/json
 
@@ -63,7 +63,8 @@ Content-Type: application/json
   "company": "博碩文化",
   "isShow": true,
   "photoUrl": "https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img",
-  "price": 1580
+  "price": 1580,
+  "specialPrice": null
 }
 
 ###

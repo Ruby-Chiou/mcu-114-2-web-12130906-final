@@ -47,4 +47,20 @@ export class ProductAzureService extends ProductService {
     const url = `${this.url}/${productId}`;
     return this.httpClient.delete<Product>(url);
   }*/
+
+  override createOrder(orderData: any): Observable<any> {
+    // 建立訂單的網址（把原本產品的網址結尾 /product 換成 /order）
+    const orderUrl = this.url.replace('/product', '/order');
+
+    // 依照老師的 API 慣例，可能也需要帶上你的學號 (studentId) 歸類訂單
+    const payload = {
+      ...orderData,
+      studentId: this.studentId,
+    };
+
+    console.log('【已發送至 Azure API】', orderUrl, payload);
+
+    // 實際發送 POST 請求
+    return this.httpClient.post(orderUrl, payload);
+  }
 }
