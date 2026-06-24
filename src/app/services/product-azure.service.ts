@@ -21,14 +21,18 @@ export class ProductAzureService extends ProductService {
   }
 
   override getList(name: string | undefined, index: number, size: number): Observable<{ data: Product[]; count: number }> {
-    let query = { studentId: this.studentId, pageIndex: index, pageSize: size } as {
-      studentId: string;
-      name?: string;
-      pageIndex: number;
-      pageSize: number;
-    };
-    if (name) query = { ...query, name };
+    let query = {
+      studentId: this.studentId,
+      pageIndex: index,
+      pageSize: size,
+    } as any;
+
+    if (name) query.name = name;
+
+    query.isShow = true;
+
     const params = new HttpParams({ fromObject: query });
+
     return this.httpClient
       .get<{ items: Product[]; totalCount: number }>(this.url, { params })
       .pipe(map(({ items: data, totalCount: count }) => ({ data, count })));
